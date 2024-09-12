@@ -37,6 +37,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         txvBlue.delegate = self
         txvGreen.delegate = self
         
+        //設定滑桿最大最小值
         sldRed.minimumValue = 0
         sldRed.maximumValue = 255
         sldRed.isContinuous = true
@@ -48,6 +49,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
          Any?, action: Selector,
          for: UIControl.Event)*/
         
+        //設定滑桿最大最小值
         sldGreen.minimumValue = 0
         sldGreen.maximumValue = 255
         sldGreen.isContinuous = true
@@ -57,7 +59,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 //        sldGreen.addTarget(self, action:
 //            #selector(sliderSum(_:)), for: .valueChanged)
         
-        
+        //設定滑桿最大最小值
         sldBlue.minimumValue = 0
         sldBlue.maximumValue = 255
         sldBlue.isContinuous = true
@@ -85,6 +87,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 //            txvRed.text = String(Int(sender.value))
 //        }
 //    }
+    
+    //限制輸入匡只能輸入數字
     func textField(_ textField:UITextField,shouldChangeCharactersIn range:NSRange,replacementString string: String) -> Bool {
         
         let allowedCharacters = CharacterSet.decimalDigits
@@ -105,6 +109,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //控制紅色的TextField輸入的數值如果超過255,直接變成255
     @IBAction func limitationsRad(_ sender: Any) {
         if let text = txvRed.text, let number = Int(text){
             if number > 255{
@@ -113,6 +118,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //控制綠色的TextField輸入的數值,如果超過255,直接變成255
     @IBAction func limitationGreen(_ sender: Any) {
         if let text = txvGreen.text, let number = Int(text){
             if number > 255{
@@ -121,6 +127,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //控制藍色的TextField輸入的數值,如果超過255,直接變成255
     @IBAction func limitationBlue(_ sender: Any) {
         if let text = txvBlue.text, let number = Int(text){
             if number > 255{
@@ -129,8 +136,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // 取得滑竿值並更新對應的 TextField
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        // 取得滑竿值並更新對應的 TextField
         if sender == sldRed {
             txvRed.text = String(Int(sender.value))
         }
@@ -145,6 +152,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         txvGreen.text = "\(Int(sldGreen.value))"
         txvBlue.text = "\(Int(sldBlue.value))"
         }*/
+    
+    //調色盤顏色跟著滑桿數值變動
     @IBAction func sliderSum(_ sender: Any){
         vPalette.backgroundColor = UIColor(
             red: CGFloat((sldRed.value)/255),
@@ -153,7 +162,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             alpha: 1)
     }
     
-    
+    //輸入的數值輸入
     @IBAction func doRedText(_ sender: Any) {
         if let redStringValue = txvRed.text{
             if let redIntValue = Int(redStringValue){
@@ -162,7 +171,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    //輸入的數值輸入
     @IBAction func doGreenText(_ sender: Any) {
         if let greenStringValue = txvGreen.text{
             if let greenIntValue = Int(greenStringValue){
@@ -171,7 +180,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    //輸入的數值輸入
     @IBAction func doBlueText(_ sender: Any) {
         if let blueStringValue = txvBlue.text{
             if let blueIntValue = Int(blueStringValue){
